@@ -48,10 +48,25 @@ function create () {
     let diamond = diamonds.create(a * 70,0, 'diamond')
     diamond.body.gravity.y = 1000
     diamond.body.bounce.y = .3 + Math.random() * .2
+}
+scoreText = game.add.text(16,16,'')
+cursors = game.input.keyboard.createCursorKeys()
+}
+function update () {
+    game.physics.arcade.collide(player, platforms)
+    game.physics.arcade.collide(diamonds, platforms)
+    game.physics.arcade.overlap(player, diamonds, collectDiamond, null, this)
+    player.body.velocity.x = 0
 
-    
+    if(cursors.left.isDown) {
+        player.body.velocity.x = -150
+        player.animations.play('left')
+    }
+}
+function collectionDiamond(player, diamond) {
+    diamond.kill()
+
+    score += 10
+    scoreText.text = 'Score' + score
 
 }
-
-}
-function update () {}

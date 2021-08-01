@@ -1,10 +1,12 @@
-
-
 const game = new Phaser.Game(800,600, Phaser.AUTO, '', {
     preload: preload,
     create: create,
     update, update
 })
+
+let platforms
+let player
+let diamonds
 // images
 function preload () {
     game.load.image('sky', 'C:\Annamalai\2021 Summer semester\Web Game Development\8-phaser-game-subrama2\resources\sky.png')
@@ -33,6 +35,23 @@ function create () {
 
     player = game.add.sprite(32, game.world.height - 150, 'pig')
     game.physics.arcade.enable(player)
+    // added jump and gravity settings
+    player.body.gravity.y = .2  
+    player.body.gravity.y = 800
+    player.body.collideWorldBounds = true //keeps him in the world
+     //the goal of the game
+    diamonds = game.add.group()
+    diamonds.enableBody = true
+    //creates diamonds with a for loop
+    for(var a = 0; a < 20; a++)
+{
+    let diamond = diamonds.create(a * 70,0, 'diamond')
+    diamond.body.gravity.y = 1000
+    diamond.body.bounce.y = .3 + Math.random() * .2
+
+    
+
+}
 
 }
 function update () {}

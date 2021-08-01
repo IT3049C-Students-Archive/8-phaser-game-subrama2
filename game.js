@@ -40,6 +40,9 @@ function create () {
     player.body.gravity.y = 800
     player.body.collideWorldBounds = true //keeps him in the world
      //the goal of the game
+     player.animations.add('left', [0,1],10,true)
+     player.animations.add('right', [2,3],10,true)
+
     diamonds = game.add.group()
     diamonds.enableBody = true
     //creates diamonds with a for loop
@@ -60,8 +63,21 @@ function update () {
 
     if(cursors.left.isDown) {
         player.body.velocity.x = -150
-        player.animations.play('left')
+        player.animations.play('left')   // how it handles sprites
+    } else if(cursors.right.isDown) {
+        player.body.velocity.x = 150
+        player.animations.play('right')
+    }else
+    {
+        player.animations.stop()
     }
+    if(cursors.up.isDown && player.body.touching.down){
+        player.body.velocity.y = -400
+    }
+
+
+
+
 }
 function collectionDiamond(player, diamond) {
     diamond.kill()

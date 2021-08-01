@@ -3,8 +3,10 @@ const game = new Phaser.Game(800,600, Phaser.AUTO, '', {
     create: create,
     update, update
 })
-
+let score = 0
+let scoreText
 let platforms
+let cursors
 let player
 let diamonds
 // images
@@ -18,10 +20,10 @@ function create () {
     game.physics.startSystem(Phaser.Physics.ARCADE)
 
 
-    game.add.sprite(0,0, 'sky')
+    game.add.sprite(0, 0, 'sky')
 
     platforms = game.add.group()
-    platforms.enableBody() = true
+    platforms.enableBody = true
 
     let ground = platforms.create(0,game.world.height - 64, 'ground')
     ground.scale.setTo(2,2)
@@ -32,7 +34,7 @@ function create () {
 
     ledge = platforms.create(-75,350, 'ground')
     ledge.body.immovable = true
-
+    //added the player
     player = game.add.sprite(32, game.world.height - 150, 'pig')
     game.physics.arcade.enable(player)
     // added jump and gravity settings
@@ -40,8 +42,8 @@ function create () {
     player.body.gravity.y = 800
     player.body.collideWorldBounds = true //keeps him in the world
      //the goal of the game
-     player.animations.add('left', [0,1],10,true)
-     player.animations.add('right', [2,3],10,true)
+     player.animations.add('left', [0,1], 10,true)
+     player.animations.add('right', [2,3], 10,true)
 
     diamonds = game.add.group()
     diamonds.enableBody = true

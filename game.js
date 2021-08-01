@@ -25,6 +25,14 @@ function create () {
     ground.scale.setTo(2,2)
     ground.body.immovable = true
 
-    
+    let ledge = platforms.create(400,450, 'ground')
+    ledge.body.immovable = true
+
+    ledge = platforms.create(-75,350, 'ground')
+    ledge.body.immovable = true
+
+    player = game.add.sprite(32, game.world.height - 150, 'pig')
+    game.physics.arcade.enable(player)
+
 }
 function update () {}

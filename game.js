@@ -75,9 +75,11 @@ function update () {
         player.body.velocity.y = -400
     }
 
-
-
-
+    if (score === 200)  // max  score
+    {
+        alert("you win congrats")
+        score = 0
+    }
 }
 function collectionDiamond(player, diamond) {
     diamond.kill()
